@@ -17,7 +17,7 @@ npm install
 ## Usage
 
 In order to see updates locally, execute `npm start`.
-To push changes to GitHub Pages use `npm publish`.
+To push changes to GitHub Pages use `npm run gh-pages`.
 
 ## License
 
