@@ -6,6 +6,8 @@ Let us explain you what a Finite State Machine is and what you can do with it.
 
 Watch the [demo on GitHub pages](https://mercedesbenzio.github.io/introduction-to-fsm/).
 
+Proudly made with [reveal.js](https://github.com/hakimel/reveal.js).
+
 ## Installation
 
 ```bash
