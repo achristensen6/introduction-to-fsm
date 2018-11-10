@@ -40,12 +40,14 @@
 							<li>and a finite number of <i>events</i></li>
 							<li>that can cause <i>transitions</i> between states.</li>
 						</ul>
-					</section>
-					<section>
-						It is different from state management patterns like Flux (with Redux as a derivated implementation). We'll explain it more later.
-					</section>
-					<section>
-						Yes, there are „infinite” (or abstract) machines also. But we won't explore them here today.
+                        <aside class="notes">
+                            <p>
+                                It is different from state management patterns like Flux (with Redux as a derivated implementation). We'll explain it more later.
+                            </p>
+                            <p>
+                                Yes, there are „infinite” (or abstract) machines also. But we won't explore them here today.
+                            </p>
+                        </aside>
 					</section>
 				</section>
 
@@ -59,8 +61,53 @@
 					<section>
 						<h2>Difference between State Management and <abbr title="Finite State Machine">FSM</abbr></h2>
 					</section>
+					<section>
+						<h3>How is Flux designed?</h3>
+					</section>
+					<section>
+						<p>
+							Flux consists of
+						</p>
+						<ul>
+							<li>dispatcher</li>
+							<li>stores</li>
+							<li>actions</li>
+							<li>views</li>
+						</ul>
+					</section>
+					<section
+					    data-background-size="contain"
+					    data-background-image="img/flux-simple-diagram-with-client-action.png">
+					</section>
+					<section>
+						<p>
+						    You see, it is more focused on
+						</p>
+						<ul>
+							<li>the implementation of</li>
+							<li>the state of (a part of) an application (hold in the store) at any given time,</li>
+							<li>and the payload of an action to</li>
+							<li>dispatch a change in the state</li>
+							<li>which updates its output.</li>
+						</ul>
+                        <aside class="notes">
+                            <p>Put in other words:</p>
+                            <p>You don't care, what states are possible.</p>
+                            <p>You don't care, what transitions are allowed.</p>
+                            <p>You just want a single source of truth, which describes your application at any given time in history (and the set of actions which led to that state, so you can time-travel).</p>
+                            <p>You're interested in the behaviour.</p>
+                        </aside>
+                        <aside class="notes">
+                            <p>On the other hand a Finite State Machine cares about what state you are in and what possible transitions you can take to another state.</p>
+                            <p>If you try to use an invalid transition, it will be simply ignored (or logged at best).</p>
+                            <p>It can't tell you, which exact route you took to get to your current state.</p>
+                            <p>So you can implement it as an enum and set of doAction() methods.</p>
+                        </aside>
+                        <aside class="notes">
+                            Luckily you can build a Finite State Machine on top of your state management.
+                        </aside>
+                    </section>
 				</section>
-
 				<section>
 					<section>
 						<h2>Types of Finite State Machines</h2>
@@ -92,6 +139,13 @@
 								<a href="https://www.flickr.com/photos/70626035@N00/">jacinta lluch valero</a>
 								(<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>)
 							</li>
+                            <li>
+                                <a href="https://github.com/facebook/flux/blob/master/examples/flux-concepts/flux-simple-f8-diagram-with-client-action-1300w.png">
+                                    flux simple f8 diagram with client action
+                                </a> by
+                                <a href="https://github.com/kyldvs">Kyle Davis</a>
+                                (<a href="https://github.com/facebook/flux/blob/master/LICENSE">BSD</a>)
+                            </li>
 						</ul>
 					</section>
 					<section>
