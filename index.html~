@@ -157,11 +157,11 @@
                               <initial>
                                 <transition target="idle" />
                               </initial>
-
+                             
                               <state id="idle">
                                 <!-- content for state "idle" -->
                               </state>
-
+                             
                               <state id="cooking">
                                 <!-- content for state "cooking" -->
                               </state>
