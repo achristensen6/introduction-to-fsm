@@ -42,7 +42,7 @@
         </section>
 
         <section
-            data-timing="60">
+                data-timing="60">
             <section>
                 <h2>What is a Finite State Machine?</h2>
             </section>
@@ -70,23 +70,25 @@
         </section>
 
         <section
-            data-timing="540">
+                data-timing="540">
             <section>
-                Problems that FSM tries to solve
+                <h3>Problems that FSM tries to solve</h3>
             </section>
             <!-- 1 -->
             <section>
                 <h3>Problems that FSM tries to solve</h3>
                 <ul>
-                    <li>System has hidden (undiscovered) states</li>
-                    <p class="list-level-first">
-                        <b>building FSM helps all the states to be explored</b>
-                    </p>
-                    <p class="list-level-second">
-                        <u>Example</u>: "button clicked", "results shown" (UX), "waiting", "loading", "error", "idle"
-                        (Dev)
-                    </p>
-                    <li>Complex behavior is coupled to component
+                    <li class="fragment">System has hidden (undiscovered) states
+                        <p class="list-level-first">
+                            <b>building FSM helps all the states to be explored</b>
+                        </p>
+                        <p class="list-level-second">
+                            <u>Example</u>: "button clicked", "results shown" (UX), "waiting", "loading", "error",
+                            "idle"
+                            (Dev)
+                        </p>
+                    </li>
+                    <li class="fragment">Complex behavior is coupled to component
                         <p class="list-level-first">
                             <b>component logic can be more focused on <i>how</i> things are executed rather than
                                 <i>why</i></b>
@@ -98,7 +100,7 @@
                             with FSM behavior can be tested independently of the component
                         </p>
                     </li>
-                    <li>Lots of if..else / switches etc. in the code
+                    <li class="fragment">Lots of if..else / switches etc. in the code
                         <p class="list-level-first">
                             <b>it’s easier to understand a FSM than many other forms of code.</b>
                         </p>
@@ -114,21 +116,21 @@
                     Problems of Finite State Machines
                 </h3>
                 <ul style="font-size: 32px;">
-                    <li>Maintain large number of states, a lot of them with identical transitions.
+                    <li class="fragment">Maintain large number of states, a lot of them with identical transitions.
                         <p class="list-level-first">
                             sometimes complexity of a traditional FSM tends to grow much faster than the complexity of
                             the system it describes.
                         </p>
                     </li>
-                    <li>State explosion.
+                    <li class="fragment">State explosion.
                         <p class="list-level-first">
                             adding a new aspect to the state machine multiplies the number of states that need to be
                             modeled, and creates a disproportionately high number of transitions.
                         </p>
                     </li>
-                    <li>Complex math theory background and steep learning curve.</li>
+                    <li class="fragment">Complex math theory background and steep learning curve.</li>
                     <p></p>
-                    <li>Lack of handy "helper" features.</li>
+                    <li class="fragment">Lack of handy "helper" features.</li>
                 </ul>
                 <aside class="notes">
                     Time estimate: 9 minutes
@@ -171,32 +173,36 @@
             <section>
                 <h3>Statecharts to the rescue</h3>
                 <ul>
-                    <li>Statecharts is an extension to FSM</li>
+                    <li class="fragment">extension to FSM</li>
                     <p class="list-level-first">
 
                     </p>
-                    <li>Statecharts address mentioned problems by introducing some extra features, such as:</li>
-                    <p class="list-level-first">
-                        <b>Actions</b>
-                    </p>
-                    <p class="list-level-second">
-                        side-effects that need to happen while transiting between states
-                    </p>
-                    <p class="list-level-first">
-                        <b>Parallel states</b>
-                    </p>
-                    <p class="list-level-second">
-                        allow modeling independent states, running in parallel
-                    </p>
-                    <p class="list-level-first">
-                        <b>Hierarchies</b>
-                    </p>
-                    <p class="list-level-second">
-                        so you can nest state machines inside each other
-                    </p>
-                    <p class="list-level-first">
-                        <b>and more...</b>
-                    </p>
+                    <li class="fragment">solve mentioned problems by introducing:
+                        <p class="list-level-first">
+                            <b>Actions</b>
+                        </p>
+                        <p class="list-level-second">
+                            side-effects that need to happen while transiting between states
+                        </p>
+                        <p class="list-level-first">
+                            <b>Parallel states</b>
+                        </p>
+                        <p class="list-level-second">
+                            allow modeling independent states, running in parallel
+                        </p>
+                        <p class="list-level-first">
+                            <b>Hierarchies</b>
+                        </p>
+                        <p class="list-level-second">
+                            so you can nest state machines inside each other
+                        </p>
+                        <p class="list-level-first">
+                            <b>Guards</b>
+                        </p>
+                        <p class="list-level-second">
+                            allow conditional transitions
+                        </p>
+                    </li>
                 </ul>
                 <aside class="notes">
                     Time estimate: 9 minutes
@@ -228,7 +234,7 @@
         </section>
 
         <section
-            data-timing="120">
+                data-timing="120">
             <section>
                 <h2>Difference between State Management and <abbr title="Finite State Machine">FSM</abbr></h2>
             </section>
@@ -302,7 +308,7 @@
         </section>
 
         <section
-            data-timing="240">
+                data-timing="240">
             <section>
                 <h2>Types of Finite State Machines</h2>
             </section>
@@ -326,7 +332,8 @@
                 <p class="list-level-first">
                     <u>Example</u>: lamp with intensity switch, traffic lights, elevator.
                 </p>
-                <img src="img/image2018-11-9_11-11-15.png" style="max-width: 350px; height: auto; display: block; margin: 0 auto;">
+                <img src="img/image2018-11-9_11-11-15.png"
+                     style="max-width: 350px; height: auto; display: block; margin: 0 auto;">
                 <aside class="notes">
                     Time estimate: 4 minutes
                 </aside>
@@ -342,7 +349,8 @@
                 <p class="list-level-first">
                     <u>Example</u>: lamp with intensity switch, vending machine.
                 </p>
-                <img src="img/image2018-11-9_13-3-23.png" style="max-width: 350px; height: auto; display: block; margin: 0 auto;">
+                <img src="img/image2018-11-9_13-3-23.png"
+                     style="max-width: 350px; height: auto; display: block; margin: 0 auto;">
                 <aside class="notes">
                     Time estimate: 4 minutes
                 </aside>
@@ -351,9 +359,11 @@
                 <h3>
                     Overview
                 </h3>
-                <p class="list-level-first">statechart = state diagram (such as Moore / Mealy) + set of handy features</p>
+                <p class="list-level-first">statechart = state diagram (such as Moore / Mealy) + set of handy
+                    features</p>
                 <p class="list-level-first">UML state machines has one additional feature "Exit state"</p>
-                <img src="img/2018-11-11_17h16_58.jpg" style="max-width: 350px; height: auto; display: block; margin: 0 auto;">
+                <img src="img/2018-11-11_17h16_58.jpg"
+                     style="max-width: 450px; height: auto; display: block; margin: 0 auto;">
                 <aside class="notes">
                     Time estimate: 4 minutes
                 </aside>
@@ -361,7 +371,7 @@
         </section>
 
         <section
-            data-timing="180">
+                data-timing="180">
             <section>
                 <h2>Machine-readable expression of a Finite State Machine</h2>
             </section>
@@ -490,7 +500,7 @@
         </section>
 
         <section
-            data-timing="560">
+                data-timing="560">
             <section>
                 <h2>Demo 🤞</h2>
                 <aside class="notes">
@@ -500,7 +510,7 @@
         </section>
 
         <section
-            data-timing="120">
+                data-timing="120">
             <section>
                 <h2>Further reading</h2>
             </section>
@@ -511,6 +521,10 @@
                         <a href="http://www.swisseduc.ch/informatik/karatojava/kara/screenshots.html">Kara</a>
                         programming language - Teach kids <abbr title="Finite State Machines">FSM</abbr>
                     </li>
+                    <li>
+                        <a href="https://github.com/davidkpiano/xstate">xstate</a>:
+                        functional, stateless JavaScript finite state machines and statecharts
+                    </li>
                 </ul>
                 <aside class="notes">
                     Time estimate: 2 minutes
@@ -519,7 +533,7 @@
         </section>
 
         <section
-            data-timing="60">
+                data-timing="60">
             <section>
                 <h2>Credits</h2>
             </section>
@@ -557,7 +571,8 @@
                         BY 2.0</a>)
                     </li>
                     <li>
-                        <a href="https://statecharts.github.io/">statecharts.github.io</a>
+                        <a href="https://statecharts.github.io/">statecharts.github.io</a>: various illustrations by <a
+                            href="https://github.com/mogsie">Erik Mogensen</a>
                     </li>
                 </ul>
                 <aside class="notes">
