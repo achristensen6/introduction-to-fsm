@@ -1,161 +1,336 @@
 <html lang="en">
-	<head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Introduction to FSM</title>
-		<link rel="stylesheet" href="css/reveal.css" />
-		<link rel="stylesheet" href="css/theme/white.css" />
-		<link rel="stylesheet" href="lib/css/zenburn.css" />
-		<link rel="stylesheet" href="css/presentation.css" />
-		<link rel="icon" href="cropped-favicon-io-3-32x32.png" sizes="32x32" />
-		<link rel="icon" href="cropped-favicon-io-3-192x192.png" sizes="192x192" />
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section
-				    data-background-image="img/mariquita-en-mi-dedo.jpg">
-					<h1 class="bright-text">Introduction to Finite State Machines</h1>
-					<p>
-						<small>
-							by André Jaenisch and Vladimir Zaikin
-						</small>
-					</p>
-					<p>
-						<small>
-							Mercedes-Benz.io GmbH, 12th November 2018
-						</small>
-					</p>
-				</section>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Introduction to FSM</title>
+    <link rel="stylesheet" href="css/reveal.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+    <link rel="stylesheet" href="css/theme/white.css"/>
+    <link rel="stylesheet" href="lib/css/zenburn.css"/>
+    <link rel="stylesheet" href="css/presentation.css"/>
+    <link rel="icon" href="cropped-favicon-io-3-32x32.png" sizes="32x32"/>
+    <link rel="icon" href="cropped-favicon-io-3-192x192.png" sizes="192x192"/>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section
+                data-background-image="img/mariquita-en-mi-dedo.jpg">
+            <h1 class="bright-text">Introduction to Finite State Machines</h1>
+            <p>
+                <small>
+                    by André Jaenisch and Vladimir Zaikin
+                </small>
+            </p>
+            <p>
+                <small>
+                    Mercedes-Benz.io GmbH, 12th November 2018
+                </small>
+            </p>
+        </section>
 
-				<section>
-					<section>
-						<h2>What is a Finite State Machine?</h2>
-					</section>
-					<section>
-						A finite state machine (FSM) is
-						<ul>
-							<li class="fragment">a <i>mathematical description</i> (yes! Math 😨)</li>
-							<li class="fragment">of the relationships between a finite number of <i>states</i>,</li>
-							<li class="fragment">and a finite number of <i>events</i></li>
-							<li class="fragment">that can cause <i>transitions</i> between states.</li>
-						</ul>
-                        <aside class="notes">
-                            <p>
-                                It is different from state management patterns like Flux (with Redux as a derivated implementation). We'll explain it more later.
-                            </p>
-                            <p>
-                                Yes, there are „infinite” (or abstract) machines also. But we won't explore them here today.
-                            </p>
-                        </aside>
-					</section>
-				</section>
+        <section>
+            <section>
+                <h2>What is a Finite State Machine?</h2>
+            </section>
+            <section>
+                A finite state machine (FSM) is
+                <ul>
+                    <li class="fragment">a <i>mathematical description</i> (yes! Math 😨)</li>
+                    <li class="fragment">of the relationships between a finite number of <i>states</i>,</li>
+                    <li class="fragment">and a finite number of <i>events</i></li>
+                    <li class="fragment">that can cause <i>transitions</i> between states.</li>
+                </ul>
+                <aside class="notes">
+                    <p>
+                        It is different from state management patterns like Flux (with Redux as a derivated
+                        implementation). We'll explain it more later.
+                    </p>
+                    <p>
+                        Yes, there are „infinite” (or abstract) machines also. But we won't explore them here today.
+                    </p>
+                </aside>
+            </section>
+        </section>
 
-				<section>
-					<section>
-						<h2>Problems that <abbr title="Finite State Machines">FSM</abbr> tries to solve</h2>
-					</section>
-				</section>
+        <section>
+            <section>
+                Problems that FSM tries to solve
+            </section>
+            <!-- 1 -->
+            <section>
+                <h3>Problems that FSM tries to solve</h3>
+                <ul>
+                    <li>System has hidden (undiscovered) states</li>
+                    <p class="list-level-first">
+                        <b>building FSM helps all the states to be explored</b>
+                    </p>
+                    <p class="list-level-second">
+                        <u>Example</u>: "button clicked", "results shown" (UX), "waiting", "loading", "error", "idle"
+                        (Dev)
+                    </p>
+                    <li>Complex behavior is coupled to component
+                        <p class="list-level-first">
+                            <b>component logic can be more focused on <i>how</i> things are executed rather than
+                                <i>why</i></b>
+                        </p>
+                        <p class="list-level-second">
+                            FSM makes easier to make changes to the behavior
+                        </p>
+                        <p class="list-level-second">
+                            with FSM behavior can be tested independently of the component
+                        </p>
+                    </li>
+                    <li>Lots of if..else / switches etc. in the code
+                        <p class="list-level-first">
+                            <b>it’s easier to understand a FSM than many other forms of code.</b>
+                        </p>
+                    </li>
+                </ul>
+            </section>
+            <!-- 2 -->
+            <section>
+                <h3>
+                    Problems of Finite State Machines
+                </h3>
+                <ul style="font-size: 32px;">
+                    <li>Maintain large number of states, a lot of them with identical transitions.
+                        <p class="list-level-first">
+                            sometimes complexity of a traditional FSM tends to grow much faster than the complexity of
+                            the system it describes.
+                        </p>
+                    </li>
+                    <li>State explosion.
+                        <p class="list-level-first">
+                            adding a new aspect to the state machine multiplies the number of states that need to be
+                            modeled, and creates a disproportionately high number of transitions.
+                        </p>
+                    </li>
+                    <li>Complex math theory background and steep learning curve.</li>
+                    <p></p>
+                    <li>Lack of handy "helper" features.</li>
+                </ul>
+            </section>
+            <!-- 3 -->
+            <section>
+                <h3>
+                    Example
+                </h3>
+                <p>
+                    A user interface with 2 states: valid and invalid and a state machine that describes this behavior.
+                </p>
+                <img src="img/2018-11-10_11h42_37.jpg">
+            </section>
+            <section>
+                <p>
+                    The state machine would need to know that a component is enabled or disabled. This will square the
+                    number of states of your machine.
+                </p>
+                <img src="img/2018-11-10_11h42_51.jpg">
+            </section>
+            <section>
+                <p>
+                    Adding a flag to indicate that user has made a change to the field, we end up with total of 8
+                    states.
+                </p>
+                <img src="img/2018-11-10_11h43_24.jpg">
+            </section>
+            <!-- 4 -->
+            <section>
+                <h3>Statecharts to the rescue</h3>
+                <ul>
+                    <li>Statecharts is an extension to FSM</li>
+                    <p class="list-level-first">
 
-				<section>
-					<section>
-						<h2>Difference between State Management and <abbr title="Finite State Machine">FSM</abbr></h2>
-					</section>
-					<section
-						data-background-image="img/flux-capacitor.png">
-						<aside class="notes">Does anybody recognise what this is?</aside>
-						<h3 class="fragment bright-text">How is Flux designed?</h3>
-					</section>
-					<section>
-						<p>
-							Flux consists of
-						</p>
-						<ul>
-							<li class="fragment">dispatcher</li>
-							<li class="fragment">stores</li>
-							<li class="fragment">actions</li>
-							<li class="fragment">views</li>
-						</ul>
-					</section>
-					<section
-					    data-background-size="contain"
-						data-background-image="img/flux-simple-diagram-with-client-action.png">
-						<aside class="notes">
-							So here we see the flow in Flux. You should be familiar with it if you worked with Redux already.
-						</aside>
-					</section>
-					<section>
-						<p>
-						    You see, it is more focused on
-						</p>
-						<ul>
-							<li class="fragment">the <i>implementation</i> of</li>
-							<li class="fragment">the <i>state</i> of (a part of) an application (hold in the store) at any given time,</li>
-							<li class="fragment">and the <i>payload</i> of an <i>action</i> to</li>
-							<li class="fragment"><i>dispatch</i> a change in the state</li>
-							<li class="fragment">which updates its <i>output</i>.</li>
-						</ul>
-                        <aside class="notes">
-                            <p>Put in other words:</p>
-                            <p>You don't care, what states are possible.</p>
-                            <p>You don't care, what transitions are allowed.</p>
-                            <p>You just want a single source of truth, which describes your application at any given time in history (and the set of actions which led to that state, so you can time-travel).</p>
-                            <p>You're interested in the behaviour.</p>
-                        </aside>
-                        <aside class="notes">
-                            <p>On the other hand a Finite State Machine cares about what state you are in and what possible transitions you can take to another state.</p>
-                            <p>If you try to use an invalid transition, it will be simply ignored (or logged at best).</p>
-                            <p>It can't tell you, which exact route you took to get to your current state.</p>
-                            <p>So you can implement it as an enum and set of doAction() methods.</p>
-                        </aside>
-                        <aside class="notes">
-                            Luckily you can build a Finite State Machine on top of your state management.
-                        </aside>
-                    </section>
-				</section>
-				<section>
-					<section>
-						<h2>Types of Finite State Machines</h2>
-					</section>
-				</section>
+                    </p>
+                    <li>Statecharts address mentioned problems by introducing some extra features, such as:</li>
+                    <p class="list-level-first">
+                        <b>Actions</b>
+                    </p>
+                    <p class="list-level-second">
+                        side-effects that need to happen while transiting between states
+                    </p>
+                    <p class="list-level-first">
+                        <b>Parallel states</b>
+                    </p>
+                    <p class="list-level-second">
+                        allow modeling independent states, running in parallel
+                    </p>
+                    <p class="list-level-first">
+                        <b>Hierarchies</b>
+                    </p>
+                    <p class="list-level-second">
+                        so you can nest state machines inside each other
+                    </p>
+                    <p class="list-level-first">
+                        <b>and more...</b>
+                    </p>
+                </ul>
+            </section>
+            <!-- 5 -->
+            <section>
+                <h3>
+                    Example
+                </h3>
+                <p>
+                    "State explosion" can be solved by introducing <i>parallel states</i>
+                </p>
+                <img src="img/2018-11-11_17h09_49.jpg">
+            </section>
+            <section>
+                <p>
+                    Can be further optimized by <i>hierarchies</i> (valid/invalid only makes sense if the field has been
+                    modified)
+                </p>
+                <img src="img/2018-11-11_17h10_16.jpg">
+            </section>
+        </section>
 
-				<section>
-					<section>
-						<h2>Machine-readable expression of a Finite State Machine</h2>
-					</section>
-					<section>
-                        <h3><abbr title="State Charts eXtendible Markup Language">SCXML</abbr></h3>
-					</section>
-					<section>
-                        <p>
-						    There is a standard at W3C to describe State Charts.
-                        </p>
-                        <p>
-                            It's called <a href="https://www.w3.org/TR/scxml/">SCXML</a> (of course, it's XML).
-                            Luckily they designed it as general-purpose event-based state machine language.
-                        </p>
-                    </section>
-                    <section>
-                        <p>
-                            So you can do a lot of interesting things with it:
-                        </p>
-                        <ul>
-                            <li>Describing the dialogue flow of a chatbot</li>
-                            <li>Use it as voice application meta-language</li>
-                            <li>Model a microwave</li>
-                        </ul>
-					</section>
-                    <section>
-                        <p>
-                            To give you an idea of how it looks like,
-                            take a peak into <a href="https://commons.apache.org/proper/commons-scxml/guide/scxml-documents.html">Apache Commons SCXML</a>
-                        </p>
-                        <pre><code
-                             class="xml"
-                             data-trim="true">
+        <section>
+            <section>
+                <h2>Difference between State Management and <abbr title="Finite State Machine">FSM</abbr></h2>
+            </section>
+            <section
+                    data-background-image="img/flux-capacitor.png">
+                <aside class="notes">Does anybody recognise what this is?</aside>
+                <h3 class="fragment bright-text">How is Flux designed?</h3>
+            </section>
+            <section>
+                <p>
+                    Flux consists of
+                </p>
+                <ul>
+                    <li class="fragment">dispatcher</li>
+                    <li class="fragment">stores</li>
+                    <li class="fragment">actions</li>
+                    <li class="fragment">views</li>
+                </ul>
+            </section>
+            <section
+                    data-background-size="contain"
+                    data-background-image="img/flux-simple-diagram-with-client-action.png">
+                <aside class="notes">
+                    So here we see the flow in Flux. You should be familiar with it if you worked with Redux already.
+                </aside>
+            </section>
+            <section>
+                <p>
+                    You see, it is more focused on
+                </p>
+                <ul>
+                    <li class="fragment">the <i>implementation</i> of</li>
+                    <li class="fragment">the <i>state</i> of (a part of) an application (hold in the store) at any given
+                        time,
+                    </li>
+                    <li class="fragment">and the <i>payload</i> of an <i>action</i> to</li>
+                    <li class="fragment"><i>dispatch</i> a change in the state</li>
+                    <li class="fragment">which updates its <i>output</i>.</li>
+                </ul>
+                <aside class="notes">
+                    <p>Put in other words:</p>
+                    <p>You don't care, what states are possible.</p>
+                    <p>You don't care, what transitions are allowed.</p>
+                    <p>You just want a single source of truth, which describes your application at any given time in
+                        history (and the set of actions which led to that state, so you can time-travel).</p>
+                    <p>You're interested in the behaviour.</p>
+                </aside>
+                <aside class="notes">
+                    <p>On the other hand a Finite State Machine cares about what state you are in and what possible
+                        transitions you can take to another state.</p>
+                    <p>If you try to use an invalid transition, it will be simply ignored (or logged at best).</p>
+                    <p>It can't tell you, which exact route you took to get to your current state.</p>
+                    <p>So you can implement it as an enum and set of doAction() methods.</p>
+                </aside>
+                <aside class="notes">
+                    Luckily you can build a Finite State Machine on top of your state management.
+                </aside>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Types of Finite State Machines</h2>
+            </section>
+            <section>
+                <h3>
+                    Overview
+                </h3>
+                <img src="img/2018-11-11_17h16_58.jpg">
+            </section>
+            <section>
+                <h3>
+                    Moore
+                </h3>
+                <p>produces output based on the state only</p>
+                <p class="list-level-first">
+                    A function with current state as an argument.
+                </p>
+                <p class="list-level-first">
+                    <u>Example</u>: lamp with intensity switch, traffic lights, elevator.
+                </p>
+                <img src="img/image2018-11-9_11-11-15.png" style="zoom: 0.7;">
+            </section>
+            <section>
+                <h3>
+                    Mealy
+                </h3>
+                <p>produce output based on state and input</p>
+                <p class="list-level-first">
+                    A function with current state and some input as arguments.
+                </p>
+                <p class="list-level-first">
+                    <u>Example</u>: lamp with intensity switch, vending machine.
+                </p>
+                <img src="img/image2018-11-9_13-3-23.png" style="zoom: 0.6;">
+            </section>
+            <section>
+                <h3>
+                    Overview
+                </h3>
+                <p class="list-level-first">statechart = state diagram (such as Moore / Mealy) + set of handy features</p>
+                <p class="list-level-first">UML state machines has one additional feature "Exit state"</p>
+                <img src="img/2018-11-11_17h16_58.jpg" style="zoom: 0.6;">
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Machine-readable expression of a Finite State Machine</h2>
+            </section>
+            <section>
+                <h3><abbr title="State Charts eXtendible Markup Language">SCXML</abbr></h3>
+            </section>
+            <section>
+                <p>
+                    There is a standard at W3C to describe State Charts.
+                </p>
+                <p>
+                    It's called <a href="https://www.w3.org/TR/scxml/">SCXML</a> (of course, it's XML).
+                    Luckily they designed it as general-purpose event-based state machine language.
+                </p>
+            </section>
+            <section>
+                <p>
+                    So you can do a lot of interesting things with it:
+                </p>
+                <ul>
+                    <li>Describing the dialogue flow of a chatbot</li>
+                    <li>Use it as voice application meta-language</li>
+                    <li>Model a microwave</li>
+                </ul>
+            </section>
+            <section>
+                <p>
+                    To give you an idea of how it looks like,
+                    take a peak into <a
+                        href="https://commons.apache.org/proper/commons-scxml/guide/scxml-documents.html">Apache Commons
+                    SCXML</a>
+                </p>
+                <pre><code
+                        class="xml"
+                        data-trim="true">
                             <state id="on">
                               <initial>
-                                <transition target="idle" />
+                                <transition target="idle"/>
                               </initial>
 
                               <state id="idle">
@@ -165,30 +340,31 @@
                               <state id="cooking">
                                 <!-- content for state "cooking" -->
                               </state>
-                              <!-- other content for state "on" -->
+                                <!-- other content for state "on" -->
                             </state>
                         </code></pre>
-                    </section>
-                    <section
-                        data-background-size="contain"
-                        data-background-image="img/Use_JSON_server_kitty.jpg">
-                        <aside class="notes">
-                            As proud JavaScript developers, we can't take XML!
-                        </aside>
-                    </section>
-                    <section>
-                        <h3>SCION</h3>
-                    </section>
-                    <section>
-                        <p>Actually quite readable.</p>
-                        <p>If you want to get your hands dirty, explore <a href="https://scion.scxml.io/">SCION</a>.</p>
-                        <p>They're offering a <a href="https://www.npmjs.com/package/@scion-scxml/core">JavaScript framework</a> (doh!) which is built with JSON (surprise!).</p>
-                    </section>
-                    <section>
-                        <p>For our case it would look like this:</p>
-                        <pre><code
-                            class="json"
-                            data-trim="true">
+            </section>
+            <section
+                    data-background-size="contain"
+                    data-background-image="img/Use_JSON_server_kitty.jpg">
+                <aside class="notes">
+                    As proud JavaScript developers, we can't take XML!
+                </aside>
+            </section>
+            <section>
+                <h3>SCION</h3>
+            </section>
+            <section>
+                <p>Actually quite readable.</p>
+                <p>If you want to get your hands dirty, explore <a href="https://scion.scxml.io/">SCION</a>.</p>
+                <p>They're offering a <a href="https://www.npmjs.com/package/@scion-scxml/core">JavaScript framework</a>
+                    (doh!) which is built with JSON (surprise!).</p>
+            </section>
+            <section>
+                <p>For our case it would look like this:</p>
+                <pre><code
+                        class="json"
+                        data-trim="true">
                             {
                                 "id": "on"
                                 "states": [
@@ -201,97 +377,108 @@
                                 ]
                             }
                         </code></pre>
-                        <p class="fragment">Not that much different, eh?</p>
-                    </section>
-                    <section>
-                        <h3>Why use a XML standard?</h3>
-                    </section>
-                    <section>
-                        <p>Because it is a standard.</p>
-                        <p>That is, you have a well-defined format which encourages interoperability.</p>
-                    </section>
-                    <section>
-                        <p>So if one tool outputs SCXML, another one should be able to read it.</p>
-                        <p>XML allows for more meta-information than JSON, but is more verbose.</p>
-                        <p>You can exchange cross-programming-language this way.</p>
-                    </section>
-				</section>
+                <p class="fragment">Not that much different, eh?</p>
+            </section>
+            <section>
+                <h3>Why use a XML standard?</h3>
+            </section>
+            <section>
+                <p>Because it is a standard.</p>
+                <p>That is, you have a well-defined format which encourages interoperability.</p>
+            </section>
+            <section>
+                <p>So if one tool outputs SCXML, another one should be able to read it.</p>
+                <p>XML allows for more meta-information than JSON, but is more verbose.</p>
+                <p>You can exchange cross-programming-language this way.</p>
+            </section>
+        </section>
 
-				<section>
-					<section>
-						<h2>Developer Tools for State Machines and xstate</h2>
-					</section>
-				</section>
+        <section>
+            <section>
+                <h2>Demo 🤞</h2>
+            </section>
+        </section>
 
-                <section>
-                    <section>
-                        <h2>Further reading</h2>
-                    </section>
-                    <section>
-                        <p>If you are interested now and want to learn more, check out these resources:</p>
-                        <ul>
-                            <li>
-                                <a href="http://www.swisseduc.ch/informatik/karatojava/kara/screenshots.html">Kara</a>
-                                programming language - Teach kids <abbr title="Finite State Machines">FSM</abbr>
-                            </li>
-                        </ul>
-                    </section>
-                </section>
+        <section>
+            <section>
+                <h2>Further reading</h2>
+            </section>
+            <section>
+                <p>If you are interested now and want to learn more, check out these resources:</p>
+                <ul>
+                    <li>
+                        <a href="http://www.swisseduc.ch/informatik/karatojava/kara/screenshots.html">Kara</a>
+                        programming language - Teach kids <abbr title="Finite State Machines">FSM</abbr>
+                    </li>
+                </ul>
+            </section>
+        </section>
 
-				<section>
-					<section>
-						<h2>Credits</h2>
-					</section>
-					<section>
-						<h3>Image credits</h3>
-						<ul>
-							<li>
-								Flickr:
-								<a href="https://flic.kr/p/oRKsPH">mariquita en mi dedo :))))</a> by
-								<a href="https://www.flickr.com/photos/70626035@N00/">jacinta lluch valero</a>
-								(<a href="https://creativecommons.org/licenses/by-sa/2.0/" title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>)
-							</li>
-							<li>
-								Flickr:
-								<a href="https://flic.kr/p/551rcA">Flux Capacitor</a> by
-								<a href="https://www.flickr.com/photos/boltron/">nate bolt</a>
-								(<a href="https://creativecommons.org/licenses/by-sa/2.0/" title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>)
-							</li>
-                            <li>
-                                <a href="https://github.com/facebook/flux/blob/master/examples/flux-concepts/flux-simple-f8-diagram-with-client-action-1300w.png">
-                                    flux simple f8 diagram with client action
-                                </a> by
-                                <a href="https://github.com/kyldvs">Kyle Davis</a>
-                                (<a href="https://github.com/facebook/flux/blob/master/LICENSE">BSD</a>)
-                            </li>
-                            <li>
-                                Wikimedia Commons:
-                                <a href="https://commons.wikimedia.org/w/index.php?curid=33593310">
-                                    Use JSON server kitty
-                                </a> by
-                                <a href="//commons.wikimedia.org/wiki/User:MaxSem" title="User:MaxSem">MaxSem</a>
-                                (<a href="https://creativecommons.org/licenses/by/2.0" title="Creative Commons Attribution 2.0">CC BY 2.0</a>)
-						</ul>
-					</section>
-					<section>
-						<p>
-							Thanks for listening
-						</p>
-						<p>
-							<a href="https://github.com/mercedesbenzio/introduction-to-fsm">GitHub repo</a>
-						</p>
-					</section>
-				</section>
-			</div>
-		</div>
-		<script src="js/head.min.js" type="text/javascript"></script>
-		<script src="js/reveal.js" type="text/javascript"></script>
-		<script type="text/javascript">
-            Reveal.initialize({
-                dependencies: [
-                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                ]
-            });
-		</script>
-	</body>
+        <section>
+            <section>
+                <h2>Credits</h2>
+            </section>
+            <section>
+                <h3>Image credits</h3>
+                <ul>
+                    <li>
+                        Flickr:
+                        <a href="https://flic.kr/p/oRKsPH">mariquita en mi dedo :))))</a> by
+                        <a href="https://www.flickr.com/photos/70626035@N00/">jacinta lluch valero</a>
+                        (<a href="https://creativecommons.org/licenses/by-sa/2.0/"
+                            title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>)
+                    </li>
+                    <li>
+                        Flickr:
+                        <a href="https://flic.kr/p/551rcA">Flux Capacitor</a> by
+                        <a href="https://www.flickr.com/photos/boltron/">nate bolt</a>
+                        (<a href="https://creativecommons.org/licenses/by-sa/2.0/"
+                            title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>)
+                    </li>
+                    <li>
+                        <a href="https://github.com/facebook/flux/blob/master/examples/flux-concepts/flux-simple-f8-diagram-with-client-action-1300w.png">
+                            flux simple f8 diagram with client action
+                        </a> by
+                        <a href="https://github.com/kyldvs">Kyle Davis</a>
+                        (<a href="https://github.com/facebook/flux/blob/master/LICENSE">BSD</a>)
+                    </li>
+                    <li>
+                        Wikimedia Commons:
+                        <a href="https://commons.wikimedia.org/w/index.php?curid=33593310">
+                            Use JSON server kitty
+                        </a> by
+                        <a href="//commons.wikimedia.org/wiki/User:MaxSem" title="User:MaxSem">MaxSem</a>
+                        (<a href="https://creativecommons.org/licenses/by/2.0" title="Creative Commons Attribution 2.0">CC
+                        BY 2.0</a>)
+                    </li>
+                    <li>
+                        <a href="https://statecharts.github.io/">statecharts.github.io</a>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <p>
+                    Thanks for listening
+                </p>
+                <p>
+                    <a href="https://github.com/mercedesbenzio/introduction-to-fsm">GitHub repo</a>
+                </p>
+            </section>
+        </section>
+    </div>
+</div>
+<script src="js/head.min.js" type="text/javascript"></script>
+<script src="js/reveal.js" type="text/javascript"></script>
+<script type="text/javascript">
+    Reveal.initialize({
+        dependencies: [
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+        ]
+    });
+</script>
+</body>
 </html>
